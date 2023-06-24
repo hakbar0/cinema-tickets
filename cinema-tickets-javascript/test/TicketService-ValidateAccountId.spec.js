@@ -27,5 +27,12 @@ describe("TicketService", () => {
         new InvalidPurchaseException(ErrorMessage.INVALID_ACCOUNT_ID)
       );
     });
+
+    it("should not throw InvalidPurchaseException with incorrect error message when accountId is a string", () => {
+      const incorrectErrorMessage = "Some incorrect error message";
+      expect(() => ticketService.validateAccountId("invalid")).not.toThrow(
+        new InvalidPurchaseException(incorrectErrorMessage)
+      );
+    });
   });
 });
