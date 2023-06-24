@@ -4,8 +4,9 @@
 
 1. Clone the repository to your local machine.
 2. Navigate to the project directory.
-3. Install the necessary dependencies using `npm install`.
-4. Run the tests using `npm test`.
+3. cd ./cinema-tickets.javascript
+4. Install the necessary dependencies using `npm install`.
+5. Run the tests using `npm test`.
 
 ## Tests
 
