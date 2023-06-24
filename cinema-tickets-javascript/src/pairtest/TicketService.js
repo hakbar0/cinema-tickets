@@ -15,6 +15,7 @@ export default class TicketService {
     this.validateAccountId(accountId);
     this.validateTicketTypeRequests(ticketTypeRequests);
     this.validateTicketTypeRequests(ticketTypeRequests);
+    this.validateAdultChildInfantRelationship(ticketTypeRequests);
   }
 
   validateAccountId(accountId) {
@@ -43,6 +44,32 @@ export default class TicketService {
 
     if (totalTickets > MAX_TICKETS) {
       throw new InvalidPurchaseException(ErrorMessage.EXCEEDED_MAX_TICKETS);
+    }
+  }
+
+  validateAdultChildInfantRelationship(ticketTypeRequests) {
+    const adultsCount = ticketTypeRequests.reduce(
+      (total, request) =>
+        request.getTicketType() === "ADULT"
+          ? total + request.getNoOfTickets()
+          : total,
+      0
+    );
+
+    if (adultsCount === 0) {
+      throw new InvalidPurchaseException(ErrorMessage.ADULT_REQUIRED);
+    }
+
+    const infantsCount = ticketTypeRequests.reduce(
+      (total, request) =>
+        request.getTicketType() === "INFANT"
+          ? total + request.getNoOfTickets()
+          : total,
+      0
+    );
+
+    if (adultsCount > 0 && infantsCount > adultsCount) {
+      throw new InvalidPurchaseException(ErrorMessage.ONE_INFANT_PER_ADULT);
     }
   }
 }
