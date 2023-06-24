@@ -9,6 +9,8 @@ export default class TicketService {
   constructor() {
     this.paymentService = new TicketPaymentService();
     this.reservationService = new SeatReservationService();
+    this.totalSeatsToAllocate = 0;
+    this.totalAmountToPay = 0;
   }
 
   purchaseTickets(accountId, ...ticketTypeRequests) {
@@ -16,6 +18,7 @@ export default class TicketService {
     this.validateTicketTypeRequests(ticketTypeRequests);
     this.validateTicketTypeRequests(ticketTypeRequests);
     this.validateAdultChildInfantRelationship(ticketTypeRequests);
+    this.totalSeatsToAllocate = this.calculateTotalSeats(ticketTypeRequests);
   }
 
   validateAccountId(accountId) {
@@ -71,5 +74,17 @@ export default class TicketService {
     if (adultsCount > 0 && infantsCount > adultsCount) {
       throw new InvalidPurchaseException(ErrorMessage.ONE_INFANT_PER_ADULT);
     }
+  }
+
+  calculateTotalSeats(ticketTypeRequests) {
+    let totalSeats = 0;
+
+    for (const request of ticketTypeRequests) {
+      if (request.getTicketType() !== "INFANT") {
+        totalSeats += request.getNoOfTickets();
+      }
+    }
+
+    return totalSeats;
   }
 }
