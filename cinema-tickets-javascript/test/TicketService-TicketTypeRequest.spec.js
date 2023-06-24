@@ -41,6 +41,16 @@ describe("TicketService", () => {
       );
     });
 
+    it("should throw an error when wrong price is passed to ticket", () => {
+      const inValidRequest = new TicketTypeRequest("ADULT", 500);
+
+      expect(() =>
+        ticketService.validateTicketTypeRequests([inValidRequest])
+      ).not.toThrow(
+        new InvalidPurchaseException(ErrorMessage.INVALID_TICKET_TYPE_REQUEST)
+      );
+    });
+
     it("should throw an error for an empty ticket type requests array", () => {
       expect(() => ticketService.validateTicketTypeRequests([])).toThrow(
         new InvalidPurchaseException(ErrorMessage.INVALID_TICKET_TYPE_REQUEST)

@@ -1,22 +1,19 @@
-/**
- * Immutable Object.
- */
+import { PRICES } from "../TicketService-Constants.js";
 
 export default class TicketTypeRequest {
   #type;
-
   #noOfTickets;
 
   constructor(type, noOfTickets) {
-    if (!this.#Type.includes(type)) {
-      throw new TypeError(`type must be ${this.#Type.slice(0, -1).join(', ')}, or ${this.#Type.slice(-1)}`);
+    if (!PRICES.hasOwnProperty(type.toUpperCase())) {
+      throw new TypeError(`type must be ${Object.keys(PRICES).join(", ")}`);
     }
 
     if (!Number.isInteger(noOfTickets)) {
-      throw new TypeError('noOfTickets must be an integer');
+      throw new TypeError("noOfTickets must be an integer");
     }
 
-    this.#type = type;
+    this.#type = type.toUpperCase();
     this.#noOfTickets = noOfTickets;
   }
 
@@ -27,6 +24,4 @@ export default class TicketTypeRequest {
   getTicketType() {
     return this.#type;
   }
-
-  #Type = ['ADULT', 'CHILD', 'INFANT'];
 }
