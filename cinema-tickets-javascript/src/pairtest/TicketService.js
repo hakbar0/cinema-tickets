@@ -13,6 +13,7 @@ export default class TicketService {
 
   purchaseTickets(accountId, ...ticketTypeRequests) {
     this.validateAccountId(accountId);
+    this.validateTicketTypeRequests(ticketTypeRequests);
   }
 
   validateAccountId(accountId) {
