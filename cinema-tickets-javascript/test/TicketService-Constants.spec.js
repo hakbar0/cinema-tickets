@@ -8,6 +8,18 @@ describe("Ticket Service PRICES Constant", () => {
     );
   });
 
+  test("Should have ADULT property", () => {
+    expect(PRICES).toHaveProperty("ADULT");
+  });
+
+  test("Should have CHILD property", () => {
+    expect(PRICES).toHaveProperty("CHILD");
+  });
+
+  test("Should have INFANT property", () => {
+    expect(PRICES).toHaveProperty("INFANT");
+  });
+
   test("Should fail for properties in incorrect case", () => {
     const unexpectedProperties = ["adult", "child", "infant"];
     expect(Object.keys(PRICES)).not.toEqual(
