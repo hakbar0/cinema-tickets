@@ -19,6 +19,7 @@ export default class TicketService {
     this.validateTicketTypeRequests(ticketTypeRequests);
     this.validateAdultChildInfantRelationship(ticketTypeRequests);
     this.totalSeatsToAllocate = this.calculateTotalSeats(ticketTypeRequests);
+    this.totalAmountToPay = this.totalAmountToPay(ticketTypeRequests);
   }
 
   validateAccountId(accountId) {
@@ -86,5 +87,19 @@ export default class TicketService {
     }
 
     return totalSeats;
+  }
+
+  calculateTotalAmount(ticketTypeRequests) {
+    const combinedRequests = ticketTypeRequests.reduce((acc, request) => {
+      const type = request.getTicketType();
+      const count = request.getNoOfTickets();
+      acc[type] = (acc[type] || 0) + count;
+      return acc;
+    }, {});
+
+    return Object.entries(combinedRequests).reduce((total, [type, count]) => {
+      const price = PRICES[type];
+      return total + price * count;
+    }, 0);
   }
 }
