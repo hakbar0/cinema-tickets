@@ -4,7 +4,7 @@ import TicketPaymentService from "../thirdparty/paymentgateway/TicketPaymentServ
 import SeatReservationService from "../thirdparty/seatbooking/SeatReservationService";
 import { MAX_TICKETS, PRICES } from "./TicketService-Constants";
 import ErrorMessage from "./ErrorMessages";
-import logger from "../Logger"; // import your logger
+import logger from "../Logger";
 
 export default class TicketService {
   constructor() {
