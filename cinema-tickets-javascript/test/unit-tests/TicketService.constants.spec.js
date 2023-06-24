@@ -1,6 +1,9 @@
-import { PRICES, MAX_TICKETS } from "../src/pairtest/TicketService-Constants";
+import {
+  PRICES,
+  MAX_TICKETS,
+} from "../../src/pairtest/TicketService-Constants";
 
-describe("Ticket Service PRICES Constant", () => {
+describe("PRICES Constants", () => {
   it("Should have correct properties", () => {
     const expectedProperties = ["ADULT", "CHILD", "INFANT"];
     expect(Object.keys(PRICES)).toEqual(
@@ -45,7 +48,7 @@ describe("Ticket Service PRICES Constant", () => {
   });
 });
 
-describe("Ticket Service MAX_TICKETS Constant", () => {
+describe("MAX_TICKETS Constant", () => {
   it("Should match a predefined constant value", () => {
     const expectedMaxTickets = 20;
     expect(MAX_TICKETS).toEqual(expectedMaxTickets);

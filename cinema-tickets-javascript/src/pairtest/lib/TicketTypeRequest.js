@@ -1,4 +1,4 @@
-import { PRICES } from "../TicketService-Constants.js";
+import { PRICES } from "../TicketService-Constants";
 
 export default class TicketTypeRequest {
   #type;
