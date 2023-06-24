@@ -11,19 +11,19 @@ describe("TicketService", () => {
 
   describe("purchaseTickets", () => {
     it("should throw InvalidPurchaseException when accountId is 0", () => {
-      expect(() => ticketService.purchaseTickets(0)).toThrow(
+      expect(() => ticketService.validateAccountId(0)).toThrow(
         new InvalidPurchaseException(ErrorMessage.INVALID_ACCOUNT_ID)
       );
     });
 
     it("should throw InvalidPurchaseException when accountId is negative", () => {
-      expect(() => ticketService.purchaseTickets(-1)).toThrow(
+      expect(() => ticketService.validateAccountId(-1)).toThrow(
         new InvalidPurchaseException(ErrorMessage.INVALID_ACCOUNT_ID)
       );
     });
 
     it("should throw InvalidPurchaseException when accountId is a string", () => {
-      expect(() => ticketService.purchaseTickets("invalid")).toThrow(
+      expect(() => ticketService.validateAccountId("invalid")).toThrow(
         new InvalidPurchaseException(ErrorMessage.INVALID_ACCOUNT_ID)
       );
     });

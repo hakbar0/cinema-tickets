@@ -12,10 +12,12 @@ export default class TicketService {
   }
 
   purchaseTickets(accountId, ...ticketTypeRequests) {
+    this.validateAccountId(accountId);
+  }
+
+  validateAccountId(accountId) {
     if (!Number.isInteger(accountId) || accountId <= 0) {
       throw new InvalidPurchaseException(ErrorMessage.INVALID_ACCOUNT_ID);
     }
-
-    // Todo
   }
 }
