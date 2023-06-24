@@ -20,4 +20,16 @@ export default class TicketService {
       throw new InvalidPurchaseException(ErrorMessage.INVALID_ACCOUNT_ID);
     }
   }
+
+  validateTicketTypeRequests(ticketTypeRequests) {
+    const isAnyRequestInvalid = ticketTypeRequests.some(
+      (request) => !(request instanceof TicketTypeRequest)
+    );
+
+    if (ticketTypeRequests.length === 0 || isAnyRequestInvalid) {
+      throw new InvalidPurchaseException(
+        ErrorMessage.INVALID_TICKET_TYPE_REQUEST
+      );
+    }
+  }
 }
